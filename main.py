@@ -1,3 +1,6 @@
+from os import read
+
+
 userFile = "/Users/ellie/Desktop/IT-Arkitektur/Afleveringer/Brugerfil.txt"
 class User:
 
@@ -26,20 +29,42 @@ class User:
         openFile.writelines(str(add_to_file))
         openFile.close()
 
+def printFile():
+    with open(userFile) as f:
+        readFile = f.readlines()
+    for line in readFile:
+        wordInLine = line.split(":")
+        print(f"Initialer: {wordInLine[0]}\nNavn: {wordInLine[1]}\nEmail: {wordInLine[2]}\nKodeord: {wordInLine[3]}\nProfil: {wordInLine[4]}")
 
-choice = int(input("Vil du:\n1: Registrere bruger\n2: Have et udprint af brugere\nVenligt indtast 1 eller 2: "))
+def getAccessLevel(initials):
+    with open(userFile) as f:
+        readFile = f.read()
+    for line in readFile:
+        wordInLine = line.split(":")
+        if initials == wordInLine[0]:
+            print(f"Profilkoden for denne medarbejder er: {wordInLine[4]}")
+            f.close()
+        else:
+            print("Medarbejderen er ikke i systemet")
+
+choice = int(input("Vil du:\n1: Registrere bruger\n2: Have et udprint af brugere\n"
+                    "3: Se profil for specifik medarbejder\nVenligst indtast 1, 2 eller 3: "))
 if choice == 1:
     name = input("Indtast venligst brugerens navn: ")
     initials = input("Indtast venligst brugerens initialer: ")
     email = input("Indtast venligt brugerens e-mail: ")
     password = input("Indtast venligst brugerens kodeord: ")
-    userCode = input("Indtast venligst brugerens profilkode: ")
-    if User.checkFile():
+    accessCode = input("Indtast venligst brugerens profilkode: ")
+    employee = initials
+    employee = User(initials, name, email, password, accessCode)
+    if employee.checkFile():
         print("Brugeren kan ikke oprettes, initialerne eller emailen er allerede i brug")
     else:
         print("Bruger oprettet")
-        employee = initials
-        employee = User(initials, name, password, userCode)
         User.registerUser(employee)
 if choice == 2:
-    print("yeehaw")
+    printFile()
+if choice == 3:
+    EmployeeInitials = input("Skriv initialerne på medarbejderen: ")
+    getAccessLevel(EmployeeInitials)
+
