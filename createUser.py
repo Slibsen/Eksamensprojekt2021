@@ -9,11 +9,26 @@ def userCreation():
     accessCode = int(input("Indtast venligst brugerens profilkode (Ml. 1-6): "))
     employee = User(initials, name, email, password, accessCode)
 
-    if employee.initialsOutOfBounds():
+    if employee.initialsOutOfBounds() and employee.profileOutOfBounds() and employee.invalidEmail():
+        employee = User(errorCatch.newInitials(), name, errorCatch.newEmail(), password, errorCatch.newProfileCode())
+
+    elif employee.initialsOutOfBounds() and employee.profileOutOfBounds():
+        employee = User(errorCatch.newInitials(), name, email, password, errorCatch.newProfileCode())
+
+    elif employee.initialsOutOfBounds() and employee.invalidEmail():
+        employee = User(errorCatch.newInitials(), name, errorCatch.newEmail(), password, accessCode)
+
+    elif employee.invalidEmail() and employee.profileOutOfBounds():
+        employee = User(initials, name, errorCatch.newEmail(), password, errorCatch.newProfileCode())
+
+    elif employee.initialsOutOfBounds():
         employee = User(errorCatch.newInitials(), name, email, password, accessCode)
 
-    if employee.profileOutOfBounds():
+    elif employee.profileOutOfBounds():
         employee = User(initials, name, email, password, errorCatch.newProfileCode())
+    
+    elif employee.invalidEmail():
+        employee = User(initials, name, errorCatch.newEmail(), password, accessCode)
 
     if employee.existingUser():
         print("Brugeren kan ikke oprettes, initialerne eller emailen er allerede i brug")
