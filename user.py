@@ -8,15 +8,18 @@ class User:
         self.file = "/Users/ellie/Desktop/IT-Arkitektur/Afleveringer/Brugerfil.txt"
 
 
-    def checkFile(self):
+    def existingUser(self):
         with open(self.file) as f:
             searchFile = f.readlines()
             for line in searchFile:
-                if self.initials in line:
+                wordInLine = line.split(":")
+                if str(self.initials) in wordInLine[0]:
                     return True
-                if self.email in f.read():
+                if self.email in wordInLine[2]:
                     return True
+            f.close()
             return False
+            
     
     def registerUser(self):
         openFile = open(self.file, "a")
@@ -24,28 +27,16 @@ class User:
         openFile.writelines(str(add_to_file))
         openFile.close()
 
-    def accessLevel(self):
-        print(self.accessCode)
+    def profileOutOfBounds(self):
+        if self.accessCode < 6 and self.accessCode > 0:
+            return False
+        else: 
+            return True
+    
+    def initialsOutOfBounds(self):
+        if len(self.initials) <= 4 and len(self.initials) > 0:
+            return False
+        else:
+            return True
+    
 
-def getAccessLevel(initials):
-    with open(userFile) as f:
-        readFile = f.readlines()
-    for line in readFile:
-        wordInLine = line.split(":")
-        try:
-            if initials in wordInLine[0]:
-                print(f"Profilkoden for denne medarbejder er: {wordInLine[4]}")
-            if wordInLine[4] == 1:
-                print("Dette er højeste niveau, medarbejderen har adgang til alle systemer")
-            if wordInLine[4] == 2:
-                print("Brugeren har adgang til de fleste systemer")
-            if wordInLine[4] == 3:
-                print("Brugeren har adgang til mange af systemerne")
-            if wordInLine[4] == 4:
-                print("Brugeren har adgang til nogle systemer")
-            if wordInLine[4] == 5:
-                print("Brugeren har adgang til få systemer")
-            if wordInLine[4] == 6:
-                print("Brugeren har ikke adgang til nogle af systemerne")
-        except:
-            print("Medarbejderen er ikke i systemet")
