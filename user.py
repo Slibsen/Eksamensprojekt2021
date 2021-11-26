@@ -7,7 +7,6 @@ class User:
         self.accessCode = accessCode
         self.file = "/Users/ellie/Desktop/IT-Arkitektur/Afleveringer/Brugerfil.txt"
 
-
     def existingUser(self):
         with open(self.file) as f:
             searchFile = f.readlines()
@@ -20,7 +19,6 @@ class User:
             f.close()
             return False
             
-    
     def registerUser(self):
         openFile = open(self.file, "a")
         add_to_file = f"{self.initials}:{self.name}:{self.email}:{hash(self.password)}:{self.accessCode}\n" #Hash funktionen forklaring: 
@@ -39,4 +37,8 @@ class User:
         else:
             return True
     
-
+    def invalidEmail(self):
+        if "@" in self.email:
+            return False
+        else:
+            return True 
