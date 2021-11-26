@@ -7,9 +7,16 @@ def newProfileCode():
         return int(newAccessCode)
 
 def newInitials():
-    initials = input("Initialerne må kun bestå af 4 bogstaver. Prøv igen: ")
+    initials = input("Initialerne skal bestå af max 4 og mindst 1 bogstav. Prøv igen: ")
 
     if len(initials) > 4 or len(initials) < 0:
         newInitials()
     else:
         return str(initials)
+
+def newEmail():
+    email = input("Denne email findes ikke, prøv igen: ")
+    if "@" not in email:
+        newEmail()
+    else:
+        return str(email)
