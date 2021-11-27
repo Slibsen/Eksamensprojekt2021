@@ -1,3 +1,4 @@
+import errorCatch
 class User:
     def __init__(self, initials, name, email, password, accessCode):
         self.initials = initials
@@ -12,9 +13,9 @@ class User:
             searchFile = f.readlines()
             for line in searchFile:
                 wordInLine = line.split(":")
-                if str(self.initials) in wordInLine[0]:
+                if str(self.initials) == wordInLine[0]:
                     return True
-                if self.email in wordInLine[2]:
+                if self.email == wordInLine[2]:
                     return True
             f.close()
             return False
@@ -32,7 +33,7 @@ class User:
             return True
     
     def initialsOutOfBounds(self):
-        if len(self.initials) <= 4 and len(self.initials) > 0:
+        if len(self.initials) <= 4 and len(self.initials) > 0 and not errorCatch.containsDigit(self.initials):
             return False
         else:
             return True
