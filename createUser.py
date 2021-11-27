@@ -9,6 +9,7 @@ def userCreation():
     accessCode = int(input("Indtast venligst brugerens profilkode (Ml. 1-6): "))
     employee = User(initials, name, email, password, accessCode)
 
+#If/elif statements tjekker for relevante inputs errors
     if employee.initialsOutOfBounds() and employee.profileOutOfBounds() and employee.invalidEmail():
         employee = User(errorCatch.newInitials(), name, errorCatch.newEmail(), password, errorCatch.newProfileCode())
 
