@@ -1,3 +1,4 @@
+#Printer txt filen ud på en læsevenlig måde i terminalen
 userFile = "/Users/ellie/Desktop/IT-Arkitektur/Afleveringer/Brugerfil.txt"
 def printFile():
     with open(userFile) as f:
