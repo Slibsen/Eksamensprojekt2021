@@ -12,7 +12,7 @@ def newProfileCode():
 #Recursive hvis længden overskrider 4 eller er under 1. Eller hvis initialerne består af tal. 
 #Returner gyldig værdi til userCreation
 def newInitials():
-    initials = input("Prøv igen: ")
+    initials = input("Initialerne er ugyldige. Prøv igen: ")
 
     if len(initials) > 4 or len(initials) < 1:
         print("Initialerne skal bestå af max 4 og mindst 1 bogstav.")
@@ -34,6 +34,8 @@ def newEmail():
     else:
         return str(email)
 
+#Tjekker om en string indeholder et tal, så man kan give en error meddelelse i tilfælde af at
+#f.eks. navn eller initialer indeholder tal 
 def containsDigit(string):
     for char in string:
         if char.isdigit():
