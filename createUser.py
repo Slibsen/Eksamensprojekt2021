@@ -9,7 +9,7 @@ def userCreation():
     accessCode = int(input("Indtast venligst brugerens profilkode (Ml. 1-6): "))
     employee = User(initials, name, email, password, accessCode)
 
-#If/elif statements tjekker for relevante inputs errors
+#If/elif statements tjekker for inputs errors og kalder derefter relevante funktioner fra user.py og errorCatch.py
     if employee.initialsOutOfBounds() and employee.profileOutOfBounds() and employee.invalidEmail():
         employee = User(errorCatch.newInitials(), name, errorCatch.newEmail(), password, errorCatch.newProfileCode())
 
@@ -31,6 +31,7 @@ def userCreation():
     elif employee.invalidEmail():
         employee = User(initials, name, errorCatch.newEmail(), password, accessCode)
 
+#Tjekker om brugeren allerede er i systemet, hvis ikke, så oprettes brugeren i txt filen
     if employee.existingUser():
         print("Brugeren kan ikke oprettes, initialerne eller emailen er allerede i brug")
     else:
