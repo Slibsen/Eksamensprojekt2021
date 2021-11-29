@@ -3,7 +3,7 @@
 def newProfileCode(): 
     newAccessCode = int(input("Indtast profilkode (1-6): "))
 
-    if newAccessCode > 6 or newAccessCode < 0:
+    if newAccessCode > 6 or newAccessCode < 1:
         print(f"{newAccessCode} er ikke en gyldig værdi.")
         return newProfileCode()
     else:
@@ -15,7 +15,7 @@ def newProfileCode():
 def newInitials():
     initials = input("Indtast initialer: ")
 
-    if len(initials) > 4 or len(initials) < 1:
+    if len(initials) > 3 or len(initials) < 1:
         print("Initialerne skal bestå af max 4 og mindst 1 bogstav.")
         return newInitials()
     elif containsDigit(initials):
