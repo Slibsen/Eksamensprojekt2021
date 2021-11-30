@@ -5,11 +5,11 @@ class User:
         self.email = email
         self.password = password
         self.accessCode = accessCode
-        self.file = "/Users/ellie/Desktop/IT-Arkitektur/Afleveringer/Brugerfil.txt"
+        self.file = "brugerFil.txt"
 
 #Tjekker om brugeren allerede er i txt filen
     def existingUser(self):
-        with open(self.file) as f:
+        with open(self.file, "r+") as f:
             searchFile = f.readlines()
             for line in searchFile:
                 wordInLine = line.split(":")
