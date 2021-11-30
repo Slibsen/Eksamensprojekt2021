@@ -1,5 +1,5 @@
 #Printer txt filen ud på en læsevenlig måde i terminalen
-userFile = "/Users/ellie/Desktop/IT-Arkitektur/Afleveringer/Brugerfil.txt"
+userFile = "brugerFil.txt"
 def printFile():
     with open(userFile) as f:
         readFile = f.readlines()
